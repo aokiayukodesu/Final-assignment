@@ -20,8 +20,12 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
     }
 
     @Override
-    public List<PurchaseHistory> findDate(int id, LocalDate purchase_date, String purchase, int price) {
-        PurchaseHistory purchaseHistory = new PurchaseHistory(id, purchase_date, purchase, price);
-        return purchaseHistoryMapper.findDate(id, purchase_date, purchase, price);
+    public List<PurchaseHistory> findDate(Integer id, LocalDate purchaseDate, String purchase, Integer price) {
+        return purchaseHistoryMapper.findDate(id, purchaseDate, purchase, price);
+    }
+
+    @Override
+    public List<PurchaseHistory> findAll() {
+        return purchaseHistoryMapper.findAll();
     }
 }

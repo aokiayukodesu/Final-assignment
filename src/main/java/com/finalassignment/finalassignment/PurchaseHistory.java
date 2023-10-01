@@ -7,24 +7,23 @@ import java.time.LocalDate;
 
 public class PurchaseHistory {
 
-    private int id;
+    private Integer id;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate purchaseDate;
 
     private String purchase;
 
-    private int price;
+    private Integer price;
 
-    public PurchaseHistory(int id, LocalDate purchaseDate, String purchase, int price) {
+    public PurchaseHistory(Integer id, LocalDate purchaseDate, String purchase, Integer price) {
         this.id = id;
         this.purchaseDate = purchaseDate;
         this.purchase = purchase;
         this.price = price;
     }
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -36,11 +35,11 @@ public class PurchaseHistory {
         return purchase;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -52,7 +51,9 @@ public class PurchaseHistory {
         this.purchase = purchase;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }
+
+

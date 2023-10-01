@@ -12,7 +12,12 @@ import java.util.List;
 
 @Mapper
 public interface PurchaseHistoryMapper {
-    @Select("SELECT * FROM  purchase_histories where purchase_date = #{purchaseHistory.id},#{purchaseHistory.purchase_date} ,purchase = #{purchaseHistory.purchase} ,price =#{purchaseHistory.price}")
-    List<PurchaseHistory> findDate(@Param("id") int id, @Param("purchase_date") LocalDate purchase_date, @Param("purchase") String purchase, @Param("price") int price);
+    @Select("SELECT * FROM purchase_histories where id = #{id} AND purchaseDate = #{purchaseDate} AND purchase = #{purchase} AND price = #{price}")
+    List<PurchaseHistory> findDate(@Param("id") Integer id, @Param("purchaseDate") LocalDate purchaseDate, @Param("purchase") String purchase, @Param("price") Integer price);
+
+    @Select("SELECT * FROM purchase_histories")
+    List<PurchaseHistory> findAll();
+
+
 }
 

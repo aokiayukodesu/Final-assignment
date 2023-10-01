@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,13 +20,19 @@ public class PurchaseHistoryController {
     public PurchaseHistoryController(PurchaseHistoryService purchaseHistoryService) {
         this.purchaseHistoryService = purchaseHistoryService;
     }
-    
+
     @GetMapping("/purchaseHistories")
-    List<PurchaseHistory> getPurchaseHistories(@RequestParam(name = "id", required = false) int id,
-                                               @RequestParam(name = "purchase_date", required = false) LocalDate purchase_date,
-                                               @RequestParam(name = "purchase", required = false) String purchase,
-                                               @RequestParam(name = "price", required = false) int price) {
-        List<PurchaseHistory> purchaseHistories = purchaseHistoryService.findDate(id, purchase_date, purchase, price);
-        return purchaseHistories;
+    List<PurchaseHistory> getPurchaseHistories(@RequestParam(name = "id", required = false) Optional<Integer> id,
+                                               @RequestParam(name = "purchaseDate", required = false) Optional<LocalDate> purchaseDate,
+                                               @RequestParam(name = "purchase", required = false) Optional<String> purchase,
+                                               @RequestParam(name = "price", required = false) Optional<Integer> price) {
+        if (id.isPresent() || purchaseDate.isPresent() || purchase.isPresent() || price.isPresent()) {
+            List<PurchaseHistory> purchaseHistories = purchaseHistoryService.findDate(id.orElse(null), purchaseDate.orElse(null), purchase.orElse(null), price.orElse(null));
+            return purchaseHistories;
+        } else {
+            List<PurchaseHistory> purchaseHistory = purchaseHistoryService.findAll();
+            return purchaseHistory;
+        }
     }
 }
+

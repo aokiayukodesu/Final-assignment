@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface PurchaseHistoryService {
 
-    List<PurchaseHistory> findDate(int id, LocalDate purchase_date, String purchase, int price);
+    List<PurchaseHistory> findDate(Integer id, LocalDate purchaseDate, String purchase, Integer price);
 
+    List<PurchaseHistory> findAll();
 }
