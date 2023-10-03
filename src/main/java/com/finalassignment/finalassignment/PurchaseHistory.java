@@ -2,8 +2,8 @@ package com.finalassignment.finalassignment;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class PurchaseHistory {
 
@@ -53,6 +53,19 @@ public class PurchaseHistory {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PurchaseHistory that = (PurchaseHistory) o;
+        return Objects.equals(id, that.id) && Objects.equals(purchaseDate, that.purchaseDate) && Objects.equals(purchase, that.purchase) && Objects.equals(price, that.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, purchaseDate, purchase, price);
     }
 }
 
